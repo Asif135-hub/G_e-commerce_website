@@ -1,16 +1,38 @@
-# React + Vite
+# Glowara Glowing — Universal E-Commerce App (Web, Android & iOS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Official universal storefront for **Glowara Glowing** (*Cosmetic & Beauty · South College Para, Tangail, Bangladesh*), built with **Expo**, **Expo Router**, **React Native**, and **TypeScript** so one codebase powers **Web**, **Android**, and **iOS**.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Glowara Glowing Luxury Aesthetic**: Warm cream, champagne, espresso, and rose-gold/gold palette matching the brand identity.
+- **Authentic Imported Catalog**: Curated Malaysian & South Korean beauty and skincare products (Garnier, Simple, Dove, Enchanteur, Ginvera, WNP'L, K-Beauty sets) priced in **BDT (`৳`)** with origin authenticity badges.
+- **Search, Filter & Sort**: Filter by `Skincare`, `Body & Hair`, `Lip Care`, `K-Beauty`, and `Sets & Gifts`, search by brand/origin/keyword, and sort by Featured, Price, or Rating.
+- **Bangladesh Delivery & Payments**: Tangail Sadar (`৳60`) & All-Bangladesh (`৳120`) delivery zones, free delivery over `৳2,000`, Cash on Delivery (COD), bKash, Nagad, and Card options.
+- **Promo Codes & Persistence**: Persistent shopping bag, wishlist, and order history via AsyncStorage, with promo codes `GLOW10` (10% off) and `WELCOME15` (15% off).
+- **Facebook Page Integration**: Direct links to message or visit [Glowara Glowing on Facebook](https://www.facebook.com/profile.php?id=61567474210477).
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+### Run Any Platform
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Interactive Expo Dev Server (QR for Expo Go on iOS/Android, or press 'w' for Web)
+npm start
+
+# Launch directly on a specific platform
+npm run web
+npm run android
+npm run ios
+```
+
+## Production Builds & Checks
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```

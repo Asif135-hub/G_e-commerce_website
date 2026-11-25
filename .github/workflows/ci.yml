@@ -1,4 +1,4 @@
-name: Frontend CI
+name: Universal App CI
 
 on:
   push:
@@ -26,8 +26,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check code
+      - name: Lint code
         run: npm run lint
 
-      - name: Build website
+      - name: Type-check TypeScript
+        run: npm run typecheck
+
+      - name: Export Web build
         run: npm run build
