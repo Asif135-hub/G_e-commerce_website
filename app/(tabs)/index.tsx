@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo, useState } from 'react';
 import {
+  Image,
   Linking,
   Pressable,
   ScrollView,
@@ -15,6 +16,8 @@ import { ProductCard } from '@/components/ProductCard';
 import { useStore } from '@/context/StoreContext';
 import { CATEGORIES, Category } from '@/data/products';
 import { colors, MAX_CONTENT_WIDTH, radii, spacing, STORE_INFO } from '@/theme';
+
+const brandLogo = require('../../assets/images/logo.png');
 
 type SortOption = 'featured' | 'price-asc' | 'price-desc' | 'rating';
 
@@ -77,30 +80,35 @@ export default function ShopScreen() {
       <View style={styles.container}>
         {/* Editorial Hero Banner */}
         <View style={styles.hero}>
-          <View style={styles.heroBadge}>
-            <Ionicons name="sparkles" size={13} color={colors.primaryDark} />
-            <Text style={styles.heroBadgeText}>COSMETIC & BEAUTY · TANGAIL, BANGLADESH</Text>
-          </View>
-          <Text style={styles.heroTitle}>100% Authentic Imported Beauty</Text>
-          <Text style={styles.heroSubtitle}>
-            Welcome to Glowara Glowing. Explore original Malaysian & Korean skincare, body care,
-            and beauty essentials—delivered from Tangail across Bangladesh. Use code{' '}
-            <Text style={styles.promoHighlight}>GLOW10</Text> for 10% off.
-          </Text>
-          <View style={styles.heroActions}>
-            <Pressable
-              style={styles.heroPrimaryBtn}
-              onPress={() => setSelectedCategory('K-Beauty')}
-            >
-              <Text style={styles.heroPrimaryText}>Explore K-Beauty</Text>
-            </Pressable>
-            <Pressable
-              style={styles.heroSecondaryBtn}
-              onPress={() => Linking.openURL(STORE_INFO.facebookUrl)}
-            >
-              <Ionicons name="logo-facebook" size={16} color={colors.heroGold} />
-              <Text style={styles.heroSecondaryText}>Facebook Page</Text>
-            </Pressable>
+          <View style={styles.heroLayout}>
+            <Image source={brandLogo} style={styles.heroLogo} resizeMode="cover" />
+            <View style={styles.heroContent}>
+              <View style={styles.heroBadge}>
+                <Ionicons name="sparkles" size={13} color={colors.primaryDark} />
+                <Text style={styles.heroBadgeText}>COSMETIC & BEAUTY · TANGAIL, BANGLADESH</Text>
+              </View>
+              <Text style={styles.heroTitle}>100% Authentic Imported Beauty</Text>
+              <Text style={styles.heroSubtitle}>
+                Welcome to Glowara Glowing. Explore original Malaysian & Korean skincare, body
+                care, and beauty essentials—delivered from Tangail across Bangladesh. Use code{' '}
+                <Text style={styles.promoHighlight}>GLOW10</Text> for 10% off.
+              </Text>
+              <View style={styles.heroActions}>
+                <Pressable
+                  style={styles.heroPrimaryBtn}
+                  onPress={() => setSelectedCategory('K-Beauty')}
+                >
+                  <Text style={styles.heroPrimaryText}>Explore K-Beauty</Text>
+                </Pressable>
+                <Pressable
+                  style={styles.heroSecondaryBtn}
+                  onPress={() => Linking.openURL(STORE_INFO.facebookUrl)}
+                >
+                  <Ionicons name="logo-facebook" size={16} color={colors.primaryDark} />
+                  <Text style={styles.heroSecondaryText}>Facebook Page</Text>
+                </Pressable>
+              </View>
+            </View>
           </View>
         </View>
 
@@ -215,6 +223,7 @@ export default function ShopScreen() {
 
         {/* Brand Footer */}
         <View style={styles.footerCard}>
+          <Image source={brandLogo} style={styles.footerLogo} resizeMode="cover" />
           <Text style={styles.footerBrand}>{STORE_INFO.name}</Text>
           <Text style={styles.footerTagline}>{STORE_INFO.tagline}</Text>
           <Text style={styles.footerMeta}>
@@ -249,45 +258,65 @@ const styles = StyleSheet.create({
     paddingTop: spacing.lg,
   },
   hero: {
-    backgroundColor: colors.heroBg,
+    backgroundColor: '#F7EDE4',
     borderRadius: radii.xl,
     padding: spacing.xl,
     marginBottom: spacing.md,
     borderWidth: 1,
-    borderColor: '#443429',
+    borderColor: colors.primaryBorder,
+  },
+  heroLayout: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: spacing.xl,
+  },
+  heroLogo: {
+    width: 112,
+    height: 112,
+    borderRadius: 56,
+    borderWidth: 2,
+    borderColor: colors.primaryBorder,
+    backgroundColor: colors.background,
+  },
+  heroContent: {
+    flex: 1,
+    minWidth: 240,
   },
   heroBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
     alignSelf: 'flex-start',
-    backgroundColor: colors.heroGold,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.primaryBorder,
     paddingHorizontal: 12,
     paddingVertical: 5,
     borderRadius: radii.full,
-    marginBottom: spacing.md,
+    marginBottom: spacing.sm,
   },
   heroBadgeText: {
     fontSize: 11,
     fontWeight: '800',
-    color: colors.heroBg,
+    color: colors.primaryDark,
     letterSpacing: 0.6,
   },
   heroTitle: {
-    fontSize: 28,
+    fontSize: 27,
     fontWeight: '800',
-    color: colors.white,
+    color: colors.text,
     marginBottom: 8,
   },
   heroSubtitle: {
     fontSize: 14,
     lineHeight: 22,
-    color: '#E7DDD3',
+    color: colors.textSecondary,
     maxWidth: 680,
     marginBottom: spacing.lg,
   },
   promoHighlight: {
-    color: colors.heroGold,
+    color: colors.primaryDark,
     fontWeight: '800',
   },
   heroActions: {
@@ -310,14 +339,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: colors.heroGold,
+    borderColor: colors.primaryBorder,
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: radii.md,
   },
   heroSecondaryText: {
-    color: colors.heroGold,
+    color: colors.primaryDark,
     fontWeight: '700',
     fontSize: 13,
   },
@@ -478,6 +508,14 @@ const styles = StyleSheet.create({
     padding: spacing.xl,
     alignItems: 'center',
     gap: 6,
+  },
+  footerLogo: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    borderWidth: 1,
+    borderColor: colors.primaryBorder,
+    marginBottom: 4,
   },
   footerBrand: {
     fontSize: 20,

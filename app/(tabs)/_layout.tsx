@@ -1,10 +1,24 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Image, Platform, StyleSheet, Text, View } from 'react-native';
 
 import { useStore } from '@/context/StoreContext';
 import { colors } from '@/theme';
+
+const brandLogo = require('../../assets/images/logo.png');
+
+function BrandHeaderTitle() {
+  return (
+    <View style={styles.brandHeader}>
+      <Image source={brandLogo} style={styles.brandLogo} resizeMode="cover" />
+      <View>
+        <Text style={styles.brandTitle}>Glowara Glowing</Text>
+        <Text style={styles.brandSub}>COSMETIC & BEAUTY</Text>
+      </View>
+    </View>
+  );
+}
 
 export default function TabsLayout() {
   const { cartCount, wishlistIds, currentUser } = useStore();
@@ -42,6 +56,7 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Glowara Glowing',
+          headerTitle: () => <BrandHeaderTitle />,
           tabBarLabel: 'Shop',
           tabBarIcon: ({ color, size, focused }) => (
             <Ionicons
@@ -130,6 +145,30 @@ export default function TabsLayout() {
 }
 
 const styles = StyleSheet.create({
+  brandHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  brandLogo: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: colors.primaryBorder,
+  },
+  brandTitle: {
+    fontSize: 17,
+    fontWeight: '800',
+    color: colors.text,
+    letterSpacing: 0.3,
+  },
+  brandSub: {
+    fontSize: 9,
+    fontWeight: '700',
+    color: colors.primary,
+    letterSpacing: 1.2,
+  },
   iconWrap: {
     position: 'relative',
   },
